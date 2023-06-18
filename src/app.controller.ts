@@ -1,8 +1,8 @@
-import { BadRequestException, Body, Controller, Get, Req } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Query, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { isEmpty } from 'lodash';
 
-import { BodyDto } from './dto';
+import { QueryDto } from './dto/query-dto';
 import { Log } from './log.service';
 
 @Controller()
@@ -10,7 +10,7 @@ export class AppController {
   constructor(private readonly log: Log) {}
 
   @Get('test')
-  async test(@Req() req: Request, @Body() dto: BodyDto): Promise<any> {
+  async test(@Req() req: Request, @Query() dto: QueryDto): Promise<any> {
     this.log.info(req.url);
 
     if (isEmpty(dto)) {
