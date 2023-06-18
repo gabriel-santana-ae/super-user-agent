@@ -10,12 +10,8 @@ export class AppController {
   constructor(private readonly log: Log) {}
 
   @Get('test')
-  async test(@Req() req: Request, @Query() dto: QueryDto): Promise<any> {
+  async test(@Req() req: Request): Promise<any> {
     this.log.info(req.url);
-
-    if (isEmpty(dto)) {
-      throw new BadRequestException('Empty body is passed');
-    }
 
     console.log('///////////////////////////////////');
     console.log('> userAgent');
