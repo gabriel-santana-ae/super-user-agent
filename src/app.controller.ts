@@ -1,8 +1,6 @@
-import { BadRequestException, Controller, Get, Query, Req } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { isEmpty } from 'lodash';
 
-import { QueryDto } from './dto/query-dto';
 import { Log } from './log.service';
 
 @Controller()
@@ -12,19 +10,8 @@ export class AppController {
   @Get('test')
   async test(@Req() req: Request): Promise<any> {
     this.log.info(req.url);
-
-    console.log('///////////////////////////////////');
-    console.log('> userAgent');
-    console.log(req.headers['user-agent']);
-    console.log();
-    console.log('> req.headers');
-    console.log(req.headers);
-    console.log();
-    console.log('> req.query');
-    console.log(req.query);
-    console.log();
-    console.log('> req.body');
-    console.log(req.body);
-    console.log('///////////////////////////////////\n');
+    console.log('user-agent:', req.headers['user-agent']);
+    console.log('cf-ipcountry:', req.headers['cf-ipcountry']);
+    console.log('sec-ch-ua-platform:', req.headers['sec-ch-ua-platform']);
   }
 }
